@@ -18,6 +18,8 @@ public class LogAnalyzer
 
     /**
      * Create an object to analyze hourly web accesses.
+     * 
+     * @param fileName File name to read from
      */
     public LogAnalyzer(String fileName)
     { 
@@ -32,7 +34,7 @@ public class LogAnalyzer
     /**
      * Return the number of accesses recorded in the log file
      * 
-     * @return int Total number of accesses
+     * @return Total number of accesses
      */
     public int numberOfAccesses()
     {
@@ -44,6 +46,29 @@ public class LogAnalyzer
         
         return total;
     }
+    
+    
+    /**
+     * Return the hour that is the most busiest in the log file
+     * 
+     * @return The hour that is the most busiest
+     */
+    public int busiestHour()
+    {
+        int mostBusiestHour = 0;
+        int AccessTotalForHour = 0;
+        
+        for(int hour = 0; hour < hourCounts.length; hour++) {
+            if(hourCounts[hour] > AccessTotalForHour)
+            {
+                AccessTotalForHour = hourCounts[hour];
+                mostBusiestHour = hour;
+            }
+        }
+        
+        return mostBusiestHour;
+    }
+    
     
     /**
      * Analyze the hourly access data from the log file.
