@@ -66,7 +66,31 @@ public class LogAnalyzer
             }
         }
         
+        //Using demoData.txt, I get back hour 6
         return mostBusiestHour;
+    }
+    
+    
+    /**
+     * Return the hour that is the most quietest in the log file
+     * 
+     * @return The hour that is the most quietest
+     */
+    public int quietestHour()
+    {
+        int mostQuietestHour = 0;
+        int AccessTotalForHour = hourCounts[mostQuietestHour];
+        
+        for(int hour = 0; hour < hourCounts.length; hour++) {
+            if(hourCounts[hour] < AccessTotalForHour)
+            {
+                AccessTotalForHour = hourCounts[hour];
+                mostQuietestHour = hour;
+            }
+        }
+        
+        //Using demoData.txt, I get back hour 12
+        return mostQuietestHour;
     }
     
     
