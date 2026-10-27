@@ -93,6 +93,42 @@ public class LogAnalyzer
         return mostQuietestHour;
     }
     
+    /**
+     * Returns the hour in a two-hour period across 24 hours (rolling over from 11pm into 12am) that is the most busiest
+     * 
+     * @return The hour in a two-hour period that is the most busiest
+     */
+    public int busiestTwoHour()
+    {
+        int busiestHourOfPeriod = 0;
+        int AccessTotalForPeriod = 0;
+                
+        for(int hour = 0; hour < hourCounts.length; hour++) {
+            
+            int subTotalForPeriod = 0;
+            
+            for(int subHour = 0; subHour < 2; subHour++) {
+                
+                int correctedHour = hour + subHour;
+                if (correctedHour > hourCounts.length - 1)
+                {
+                    correctedHour -= hourCounts.length;
+                }
+                
+                subTotalForPeriod += hourCounts[correctedHour];
+                
+            }
+                        
+            if(subTotalForPeriod > AccessTotalForPeriod)
+            {
+                AccessTotalForPeriod = subTotalForPeriod;
+                busiestHourOfPeriod = hour;
+            }
+        }
+        
+        return busiestHourOfPeriod;
+    }
+    
     
     /**
      * Analyze the hourly access data from the log file.
